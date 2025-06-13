@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Brain, Activity, TrendingUp, Users } from "lucide-react";
@@ -40,56 +39,65 @@ const MLModelCard = ({
     }
   };
 
+  // Truncate description if it's longer than 80 characters
+  const truncatedDescription = description.length > 80 
+    ? description.substring(0, 80) + "..."
+    : description;
+
   return (
-    <Card className="bg-white/5 backdrop-blur-lg border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:scale-105">
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-2">
-            <Brain className="w-5 h-5 text-blue-400" />
-            <CardTitle className="text-white text-lg">{title}</CardTitle>
-          </div>
-          <Badge className={statusColors[status]}>
-            {status.charAt(0).toUpperCase() + status.slice(1)}
-          </Badge>
-        </div>
-        <p className="text-blue-200 text-sm">{description}</p>
-      </CardHeader>
-      
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-1">
-              <TrendingUp className="w-3 h-3 text-green-400" />
-              <span className="text-xs text-blue-200">Accuracy</span>
+    <div className="futuristic-card p-8 animate-fade-in backdrop-blur-sm hover:scale-105 transition-all duration-300 group h-full flex flex-col">
+      <div className="mb-6 flex-grow">
+        <div className="flex items-start justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-lg border border-blue-400/30 rounded-xl flex items-center justify-center blue-glow">
+              <Brain className="w-6 h-6 text-blue-400 animate-data-pulse" />
             </div>
-            <p className="text-lg font-bold text-white">{accuracy}%</p>
+            <div>
+              <h3 className="text-white text-xl font-semibold">{title}</h3>
+              <Badge className={`mt-1 ${statusColors[status]}`}>
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </Badge>
+            </div>
+          </div>
+        </div>
+        <p className="text-blue-200/80 mb-6 leading-relaxed min-h-[1.5rem]">{truncatedDescription}</p>
+      </div>
+      
+      <div className="space-y-6 mt-auto">
+        <div className="grid grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-green-400" />
+              <span className="text-sm text-blue-200/70">Accuracy</span>
+            </div>
+            <p className="text-2xl font-bold text-white">{accuracy}%</p>
           </div>
           
-          <div className="space-y-1">
-            <div className="flex items-center gap-1">
-              <Users className="w-3 h-3 text-purple-400" />
-              <span className="text-xs text-blue-200">Predictions</span>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-purple-400" />
+              <span className="text-sm text-blue-200/70">Predictions</span>
             </div>
-            <p className="text-lg font-bold text-white">{predictions.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-white">{predictions.toLocaleString()}</p>
           </div>
         </div>
         
-        <div className="space-y-1">
-          <div className="flex items-center gap-1">
-            <Activity className="w-3 h-3 text-orange-400" />
-            <span className="text-xs text-blue-200">Last Updated</span>
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <Activity className="w-4 h-4 text-orange-400" />
+            <span className="text-sm text-blue-200/70">Last Updated</span>
           </div>
-          <p className="text-sm text-white">{lastUpdated}</p>
+          <p className="text-lg text-white font-medium">{lastUpdated}</p>
         </div>
         
-        <Button 
+        <button
           onClick={handleLaunch}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white border-none"
+          className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-xl font-medium blue-glow"
         >
-        Intialize Model
-        </Button>
-      </CardContent>
-    </Card>
+          Initialize Model
+        </button>
+      </div>
+    </div>
   );
 };
 

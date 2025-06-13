@@ -27,17 +27,19 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
     try {
       await login(email, password);
       toast({
-        title: "Welcome back!",
-        description: "You have successfully logged in.",
+        title: "🎉 Welcome Back!",
+        description: "Successfully connected to Permobil AI Hub",
+        className: "futuristic-card border-green-400/30 bg-gradient-to-br from-blue-900/95 to-blue-800/95 backdrop-blur-xl text-white",
       });
       onClose();
       setEmail('');
       setPassword('');
     } catch (error) {
       toast({
-        title: "Login failed",
-        description: "Please check your credentials and try again.",
+        title: "🚫 Access Denied",
+        description: "Authentication failed. Please verify your credentials.",
         variant: "destructive",
+        className: "futuristic-card border-red-400/30 bg-gradient-to-br from-red-900/95 to-red-800/95 backdrop-blur-xl text-white",
       });
     } finally {
       setIsLoading(false);
@@ -52,7 +54,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
             Welcome Back
           </DialogTitle>
           <DialogDescription className="text-center text-blue-100">
-            Sign in to access your ML projects dashboard
+            Please sign in to continue using the Permobil AI Hub.
           </DialogDescription>
         </DialogHeader>
         
@@ -110,7 +112,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
         </form>
         
         <div className="text-center text-sm text-blue-200 mt-4">
-          Demo credentials: any email and password will work
+          Forgot your password?{' '+'Contact administrator.! '}
         </div>
       </DialogContent>
     </Dialog>

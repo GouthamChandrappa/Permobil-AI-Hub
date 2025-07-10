@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Download, BarChart3, PieChart } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart as RechartsPieChart, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart as RechartsPieChart, Cell, Pie } from 'recharts';
 
 interface AnalysisResultsProps {
   results: {
@@ -9,7 +9,7 @@ interface AnalysisResultsProps {
     nonComplaintCount: number;
     totalProcessed: number;
     accuracy: number;
-    downloadData: Blob;
+    downloadData?: Blob;
     filename: string;
   };
   onDownload: () => void;
@@ -115,7 +115,7 @@ const AnalysisResults = ({ results, onDownload }: AnalysisResultsProps) => {
           </CardContent>
         </Card>
 
-        {/* Pie Chart */}
+        {/* Pie Chart - FIXED */}
         <Card className="bg-white/10 backdrop-blur-lg border-blue-500/20">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
@@ -126,11 +126,19 @@ const AnalysisResults = ({ results, onDownload }: AnalysisResultsProps) => {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <RechartsPieChart>
-                <RechartsPieChart data={pieData} cx="50%" cy="50%" outerRadius={80} dataKey="value">
+                <Pie
+                  data={pieData}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  dataKey="value"
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                  labelLine={false}
+                >
                   {pieData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
-                </RechartsPieChart>
+                </Pie>
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: '#1f2937', 
@@ -148,7 +156,7 @@ const AnalysisResults = ({ results, onDownload }: AnalysisResultsProps) => {
             <div className="flex justify-center gap-4 mt-4">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-red-500 rounded"></div>
-                <span className="text-sm text-white">Complaints</span>
+                <span className="text-sm text-white">Non-Complaints</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-500 rounded"></div>

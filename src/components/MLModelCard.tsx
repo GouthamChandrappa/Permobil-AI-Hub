@@ -15,14 +15,13 @@ interface MLModelCardProps {
 
 const MLModelCard = ({ 
   title, 
-  description, 
-  accuracy, 
+  description,  
   status, 
   lastUpdated, 
   predictions,
   route 
 }: MLModelCardProps) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
   const statusColors = {
     active: "bg-green-500/20 text-green-300 border-green-500/30",
@@ -32,15 +31,16 @@ const MLModelCard = ({
 
   const handleLaunch = () => {
     if (route) {
-      navigate(route);
+      // Open the model's route in a new tab
+      window.open(route, '_blank');
     } else {
-      // Default route for models without specific routes
-      navigate('/ml-prediction');
+      // Default URL for models without specific routes
+      window.open('/ml-prediction', '_blank');
     }
   };
 
   // Truncate description if it's longer than 80 characters
-  const truncatedDescription = description.length > 80 
+  const truncatedDescription = description.length > 50 
     ? description.substring(0, 80) + "..."
     : description;
 
@@ -65,27 +65,11 @@ const MLModelCard = ({
       
       <div className="space-y-6 mt-auto">
         <div className="grid grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-green-400" />
-              <span className="text-sm text-blue-200/70">Accuracy</span>
-            </div>
-            <p className="text-2xl font-bold text-white">{accuracy}%</p>
-          </div>
-          
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-purple-400" />
-              <span className="text-sm text-blue-200/70">Predictions</span>
-            </div>
-            <p className="text-2xl font-bold text-white">{predictions.toLocaleString()}</p>
-          </div>
         </div>
-        
         <div className="space-y-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <Activity className="w-4 h-4 text-orange-400" />
-            <span className="text-sm text-blue-200/70">Last Updated</span>
+            <span className="text-sm mt-0 text-blue-200/70">Last Updated</span>
           </div>
           <p className="text-lg text-white font-medium">{lastUpdated}</p>
         </div>

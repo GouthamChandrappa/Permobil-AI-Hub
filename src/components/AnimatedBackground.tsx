@@ -14,75 +14,6 @@ const AnimatedBackground = () => {
     color: string;
   }>>([]);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-      
-      // Create particles on mouse movement
-      if (Math.random() < 0.3) {
-        const newParticle = {
-          id: Date.now() + Math.random(),
-          x: e.clientX,
-          y: e.clientY,
-          vx: (Math.random() - 0.5) * 4,
-          vy: (Math.random() - 0.5) * 4,
-          life: 60,
-          maxLife: 60,
-          size: Math.random() * 3 + 1,
-          color: ['#00d4ff', '#7c3aed', '#10b981', '#f59e0b'][Math.floor(Math.random() * 4)]
-        };
-        
-        setParticles(prev => [...prev.slice(-50), newParticle]);
-      }
-    };
-
-    const handleClick = (e: MouseEvent) => {
-      // Create burst of particles on click
-      for (let i = 0; i < 15; i++) {
-        const angle = (i / 15) * Math.PI * 2;
-        const speed = Math.random() * 6 + 2;
-        const newParticle = {
-          id: Date.now() + Math.random() + i,
-          x: e.clientX,
-          y: e.clientY,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          life: 80,
-          maxLife: 80,
-          size: Math.random() * 4 + 2,
-          color: ['#00d4ff', '#7c3aed', '#10b981', '#f59e0b', '#ef4444'][Math.floor(Math.random() * 5)]
-        };
-        
-        setParticles(prev => [...prev.slice(-100), newParticle]);
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('click', handleClick);
-
-    // Particle animation loop
-    const animateParticles = () => {
-      setParticles(prev => 
-        prev.map(particle => ({
-          ...particle,
-          x: particle.x + particle.vx,
-          y: particle.y + particle.vy,
-          life: particle.life - 1,
-          vx: particle.vx * 0.98,
-          vy: particle.vy * 0.98 + 0.1
-        })).filter(particle => particle.life > 0)
-      );
-    };
-
-    const interval = setInterval(animateParticles, 16);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('click', handleClick);
-      clearInterval(interval);
-    };
-  }, []);
-
   return (
     <div className="absolute inset-0 z-[1]">
       {/* Animated Gradient Orbs */}
@@ -176,24 +107,6 @@ const AnimatedBackground = () => {
           <animate attributeName="opacity" values="0.5;0.9;0.5" dur="5s" repeatCount="indefinite" />
         </circle>
       </svg>
-
-      {/* Mouse-Following Interactive Particles */}
-      {particles.map(particle => (
-        <div
-          key={particle.id}
-          className="absolute pointer-events-none rounded-full"
-          style={{
-            left: particle.x,
-            top: particle.y,
-            width: particle.size,
-            height: particle.size,
-            backgroundColor: particle.color,
-            opacity: particle.life / particle.maxLife,
-            boxShadow: `0 0 10px ${particle.color}`,
-            transform: 'translate(-50%, -50%)'
-          }}
-        />
-      ))}
 
       {/* Enhanced Floating Data Particles */}
       <div className="absolute top-1/3 left-1/5 w-2 h-2 bg-blue-300/80 rounded-full shadow-lg shadow-blue-300/50" 

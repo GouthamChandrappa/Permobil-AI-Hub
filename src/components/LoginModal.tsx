@@ -112,7 +112,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
         </form>
         
         <div className="text-center text-sm text-blue-200 mt-4">
-          Forgot your password?{' '+'Contact administrator.! '}
+          Forgot password?{' '+'Contact administrator! '}
         </div>
       </DialogContent>
     </Dialog>

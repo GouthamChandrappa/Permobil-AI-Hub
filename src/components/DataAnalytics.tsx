@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface UploadedData {
   headers: string[];
-  rows: any[][];
+  rows: (string | number | null)[][];
   totalRows: number;
 }
 
@@ -13,8 +13,12 @@ interface DataAnalyticsProps {
 const DataAnalytics = ({ data }: DataAnalyticsProps) => {
   // Calculate basic statistics
   const columnStats = data.headers.map((header, colIndex) => {
-    const columnData = data.rows.map(row => row[colIndex]).filter(val => val && val.trim());
-    const numericData = columnData.filter(val => !isNaN(parseFloat(val))).map(val => parseFloat(val));
+    const columnData = data.rows
+      .map(row => row[colIndex])
+      .filter(val => val !== null && (typeof val !== 'string' || val.trim() !== ''));
+    const numericData = columnData
+      .filter(val => val !== null && !isNaN(parseFloat(typeof val === 'number' ? val.toString() : val)))
+      .map(val => parseFloat(typeof val === 'number' ? val.toString() : (val ?? '').toString()));
     
     return {
       name: header,

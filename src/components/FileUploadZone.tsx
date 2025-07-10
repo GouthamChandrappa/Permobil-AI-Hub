@@ -11,8 +11,6 @@ interface FileUploadZoneProps {
 const FileUploadZone = ({ onFileUpload, uploadedFile, onReset }: FileUploadZoneProps) => {
   const [isDragOver, setIsDragOver] = useState(false);
 
-  // ... keep existing code (handleDragOver, handleDragLeave, handleDrop functions)
-
   const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setIsDragOver(true);
@@ -48,8 +46,6 @@ const FileUploadZone = ({ onFileUpload, uploadedFile, onReset }: FileUploadZoneP
     }
   };
 
-  // ... keep existing code (uploaded file display section)
-
   return (
     <div
       onDragOver={handleDragOver}
@@ -57,10 +53,10 @@ const FileUploadZone = ({ onFileUpload, uploadedFile, onReset }: FileUploadZoneP
       onDrop={handleDrop}
       className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
         isDragOver
-          ? 'border-blue-400 bg-blue-500/20'
-          : 'border-gray-600 hover:border-gray-500'
+          ? 'border-blue-400 bg-blue-100/20'
+          : 'border-blue-600 hover:border-blue-500'
       }`}
-    >
+      >
       <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
       <p className="text-white mb-2">Drag and drop your Excel file here</p>
       <p className="text-gray-400 mb-4">or</p>
@@ -81,8 +77,23 @@ const FileUploadZone = ({ onFileUpload, uploadedFile, onReset }: FileUploadZoneP
         title="Select an Excel or CSV file to upload"
       />
       <p className="text-gray-500 text-sm mt-2">
-        Supports: .xlsx, .xls, .csv files
+        Supports: .xlsx, .xls, .csv files.
       </p>
+      {uploadedFile && (
+        <div className="mt-6 flex items-center justify-between bg-gray-800/10 p-4 rounded-lg">
+          <div className="flex items-center gap-3">
+            <FileSpreadsheet className="w-6 h-6 text-blue-400" />
+            <span className="text-white">{uploadedFile.name}</span>
+          </div>
+          <Button
+            variant="ghost"
+            onClick={onReset}
+            className="text-red-500 hover:text-red-600"
+          >
+            <X className="w-5 h-5" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

@@ -14,10 +14,10 @@ const MLModelsGrid = () => {
   const models = [
     {
       title: "Complaint Classifier",
-      description: "Automatically categorizes customer complaints using advanced NLP basicallly its trained  on  large datasets to identify underlying patters within the historical datasets, so this enables the model to predict accurately if its trained on a highly quality labeled customer call logs.",
-      accuracy: 94.2,
+      description: "Classifies customer call transcripts into categories.",
+      accuracy: 0.95,
       status: "active" as const,
-      lastUpdated: "2 hours ago",
+      lastUpdated: "06/11/2025",
       predictions: 15420,
       route: "/complaint-classifier"
     }

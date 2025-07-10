@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 
 interface UploadedData {
   headers: string[];
-  rows: any[][];
+  rows: (string | number | boolean | null)[][];
   totalRows: number;
 }
 
@@ -25,7 +25,7 @@ const DataPreview = ({ data }: DataPreviewProps) => {
       <div className="overflow-x-auto rounded-lg border border-blue-500/30">
         <Table>
           <TableHeader>
-            <TableRow className="bg-blue-500/20">
+            <TableRow className="bg-blue-500/50">
               {data.headers.map((header, index) => (
                 <TableHead key={index} className="text-white font-medium">
                   {header}
@@ -37,7 +37,7 @@ const DataPreview = ({ data }: DataPreviewProps) => {
             {data.rows.map((row, rowIndex) => (
               <TableRow 
                 key={rowIndex} 
-                className="border-blue-500/20 hover:bg-blue-500/10"
+                className="border-blue-500/20 hover:bg-blue-500/30"
               >
                 {row.map((cell, cellIndex) => (
                   <TableCell key={cellIndex} className="text-blue-100">

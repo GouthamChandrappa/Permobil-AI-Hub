@@ -17,52 +17,26 @@ const SystemMetrics = () => {
   const metrics = [
     { 
       label: 'Active Models', 
-      value: '24', 
-      trend: '+8', 
+      value: '1',  
       icon: Brain, 
       color: 'blue',
       description: 'ML models running'
     },
     { 
-      label: 'Daily Predictions', 
-      value: '1.2M', 
-      trend: '+15%', 
-      icon: Activity, 
-      color: 'green',
-      description: 'Predictions processed'
-    },
-    { 
       label: 'System Uptime', 
-      value: '99.9%', 
-      trend: '+0.1%', 
+      value: '99.9%',  
       icon: Shield, 
       color: 'emerald',
       description: 'Reliability score'
     },
     { 
       label: 'Active Users', 
-      value: '284', 
-      trend: '+12', 
+      value: '0', 
       icon: Users, 
       color: 'purple',
       description: 'Internal users'
     },
-    { 
-      label: 'Model Accuracy', 
-      value: '94.8%', 
-      trend: '+2.3%', 
-      icon: TrendingUp, 
-      color: 'orange',
-      description: 'Average accuracy'
-    },
-    { 
-      label: 'Infrastructure', 
-      value: 'Optimal', 
-      trend: 'Stable', 
-      icon: Server, 
-      color: 'cyan',
-      description: 'System health'
-    }
+  
   ];
 
   const getColorClasses = (color: string) => {
@@ -89,9 +63,6 @@ const SystemMetrics = () => {
             <div className={`w-12 h-12 bg-gradient-to-br ${getColorClasses(metric.color).split(' ')[0]} ${getColorClasses(metric.color).split(' ')[1]} rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25 animate-floating`}>
               <metric.icon className="w-6 h-6 text-white" />
             </div>
-            <Badge className="bg-green-500/20 text-green-300 border-green-400/30 animate-data-pulse backdrop-blur-sm">
-              {metric.trend}
-            </Badge>
           </div>
           
           <div className="space-y-2">

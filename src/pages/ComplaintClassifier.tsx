@@ -337,21 +337,21 @@ const ComplaintClassifier = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2 flex items-center justify-center gap-3">
-            <MessageSquare className="w-10 h-10 text-blue-400" />
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 p-3 sm:p-4 md:p-6">
+      <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 flex items-center justify-center gap-2 sm:gap-3">
+            <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-blue-400" />
             Complaint Classifier
           </h1>
-          <p className="text-blue-200">Upload your complaint data and get AI-powered classification results</p>
+          <p className="text-sm sm:text-base text-blue-200 px-4">Upload your complaint data and get AI-powered classification results</p>
           
           {/* Model Status */}
-          <div className="flex items-center justify-center gap-4 mt-4">
-            <span className="text-blue-200">Model Status:</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-4 px-4">
+            <span className="text-sm sm:text-base text-blue-200">Model Status:</span>
             {getStatusBadge()}
             {modelStatus && (
-              <span className="text-sm text-blue-300">
+              <span className="text-xs sm:text-sm text-blue-300 text-center sm:text-left">
                 {modelStatus.device && `${modelStatus.device} • `}
                 {modelStatus.memory_usage && `${modelStatus.memory_usage} • `}
                 {modelStatus.predictions_today && `${modelStatus.predictions_today} predictions`}
@@ -361,11 +361,11 @@ const ComplaintClassifier = () => {
           
           {/* Initialize Model Button */}
           {!isModelReady && (
-            <div className="mt-4">
+            <div className="mt-4 px-4">
               <Button
                 onClick={initializeModel}
                 disabled={isInitializing}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
               >
                 {isInitializing ? (
                   <>

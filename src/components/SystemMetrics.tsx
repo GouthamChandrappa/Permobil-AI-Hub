@@ -1,4 +1,3 @@
-
 import { Badge } from '@/components/ui/badge';
 import { 
   Brain, 
@@ -52,35 +51,35 @@ const SystemMetrics = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       {metrics.map((metric, index) => (
         <div 
           key={metric.label} 
-          className="bg-black/10 backdrop-blur-xl border border-cyan-400/20 p-6 rounded-2xl hover:border-cyan-400/40 hover:bg-black/20 transition-all duration-500 group animate-fade-in hover:scale-105"
+          className="bg-black/10 backdrop-blur-xl border border-cyan-400/20 p-4 sm:p-6 rounded-xl sm:rounded-2xl hover:border-cyan-400/40 hover:bg-black/20 transition-all duration-500 group animate-fade-in hover:scale-105"
           style={{ animationDelay: `${index * 0.1}s` }}
         >
-          <div className="flex items-center justify-between mb-4">
-            <div className={`w-12 h-12 bg-gradient-to-br ${getColorClasses(metric.color).split(' ')[0]} ${getColorClasses(metric.color).split(' ')[1]} rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25 animate-floating`}>
-              <metric.icon className="w-6 h-6 text-white" />
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br ${getColorClasses(metric.color).split(' ')[0]} ${getColorClasses(metric.color).split(' ')[1]} rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/25 animate-floating`}>
+              <metric.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
           </div>
           
-          <div className="space-y-2">
-            <div className={`text-3xl font-bold ${getColorClasses(metric.color).split(' ')[2]} group-hover:scale-110 transition-transform duration-300`}>
+          <div className="space-y-1 sm:space-y-2">
+            <div className={`text-2xl sm:text-3xl font-bold ${getColorClasses(metric.color).split(' ')[2]} group-hover:scale-110 transition-transform duration-300`}>
               {metric.value}
             </div>
-            <div className="text-lg font-semibold text-cyan-100">
+            <div className="text-base sm:text-lg font-semibold text-cyan-100">
               {metric.label}
             </div>
-            <div className="text-sm text-cyan-300">
+            <div className="text-xs sm:text-sm text-cyan-300">
               {metric.description}
             </div>
           </div>
 
           {/* Progress bar for some metrics */}
           {metric.label.includes('Uptime') || metric.label.includes('Accuracy') ? (
-            <div className="mt-4">
-              <div className="h-2 bg-black/30 rounded-full overflow-hidden border border-cyan-400/20">
+            <div className="mt-3 sm:mt-4">
+              <div className="h-1.5 sm:h-2 bg-black/30 rounded-full overflow-hidden border border-cyan-400/20">
                 <div 
                   className={`h-full bg-gradient-to-r ${getColorClasses(metric.color).split(' ')[0]} ${getColorClasses(metric.color).split(' ')[1]} transition-all duration-1000 shadow-lg`}
                   style={{ width: metric.value }}

@@ -13,11 +13,11 @@ interface DataPreviewProps {
 const DataPreview = ({ data }: DataPreviewProps) => {
   return (
     <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <p className="text-blue-200">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <p className="text-blue-200 text-sm sm:text-base">
           Showing first {Math.min(10, data.rows.length)} rows of {data.totalRows} total rows
         </p>
-        <p className="text-blue-200">
+        <p className="text-blue-200 text-sm sm:text-base">
           {data.headers.length} columns
         </p>
       </div>
@@ -27,7 +27,7 @@ const DataPreview = ({ data }: DataPreviewProps) => {
           <TableHeader>
             <TableRow className="bg-blue-500/50">
               {data.headers.map((header, index) => (
-                <TableHead key={index} className="text-white font-medium">
+                <TableHead key={index} className="text-white font-medium text-xs sm:text-sm whitespace-nowrap">
                   {header}
                 </TableHead>
               ))}
@@ -40,7 +40,7 @@ const DataPreview = ({ data }: DataPreviewProps) => {
                 className="border-blue-500/20 hover:bg-blue-500/30"
               >
                 {row.map((cell, cellIndex) => (
-                  <TableCell key={cellIndex} className="text-blue-100">
+                  <TableCell key={cellIndex} className="text-blue-100 text-xs sm:text-sm whitespace-nowrap">
                     {cell || '-'}
                   </TableCell>
                 ))}

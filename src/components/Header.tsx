@@ -14,21 +14,22 @@ const Header = ({ isAuthenticated, onLogin, onLogout }: HeaderProps) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-blue-200 shadow-lg">
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <img 
               src="/favicon.ico" 
               alt="Permobil Logo" 
-              className="w-8 h-8"
+              className="w-6 h-6 sm:w-8 sm:h-8"
             />
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                 Permobil AI Hub
               </h1>
-              <div className="flex items-center space-x-2">
-                <p className="text-sm text-blue-600 font-medium">Neural Intelligence Center</p>
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <p className="text-xs sm:text-sm text-blue-600 font-medium hidden sm:block">Neural Intelligence Center</p>
+                <p className="text-xs sm:text-sm text-blue-600 font-medium sm:hidden">Neural AI</p>
                 <div className="flex space-x-1">
                   <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />

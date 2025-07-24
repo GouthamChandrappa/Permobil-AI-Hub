@@ -34,6 +34,36 @@
 
     --radius: 0.75rem;
   }
+
+  .dark {
+    --background: 2 6 23;
+    --foreground: 248 250 252;
+
+    --card: 15 23 42;
+    --card-foreground: 248 250 252;
+
+    --popover: 15 23 42;
+    --popover-foreground: 248 250 252;
+
+    --primary: 59 130 246;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 30 41 59;
+    --secondary-foreground: 248 250 252;
+
+    --muted: 30 41 59;
+    --muted-foreground: 148 163 184;
+
+    --accent: 30 41 59;
+    --accent-foreground: 248 250 252;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+
+    --border: 30 41 59;
+    --input: 30 41 59;
+    --ring: 59 130 246;
+  }
 }
 
 @layer base {
@@ -42,14 +72,47 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    background: radial-gradient(ellipse at center, #0f172a 0%, #020617 70%, #000000 100%);
+    @apply bg-background text-foreground transition-colors duration-300;
     min-height: 100vh;
     overflow-x: hidden;
+  }
+
+  /* System theme detection */
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+      --background: 2 6 23;
+      --foreground: 248 250 252;
+      --card: 15 23 42;
+      --card-foreground: 248 250 252;
+      --popover: 15 23 42;
+      --popover-foreground: 248 250 252;
+      --secondary: 30 41 59;
+      --secondary-foreground: 248 250 252;
+      --muted: 30 41 59;
+      --muted-foreground: 148 163 184;
+      --accent: 30 41 59;
+      --accent-foreground: 248 250 252;
+      --border: 30 41 59;
+      --input: 30 41 59;
+    }
   }
 }
 
 @layer components {
+  /* Enterprise grid pattern */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .dark .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  }
+
   .futuristic-card {
     @apply bg-black/10 backdrop-blur-xl border border-cyan-400/20 rounded-2xl shadow-xl relative overflow-hidden;
     box-shadow: 

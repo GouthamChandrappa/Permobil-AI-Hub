@@ -21,12 +21,12 @@ const IndexContent = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen relative overflow-hidden">
-        {/* Dynamic AI Background */}
-        <DashboardBackground />
+      <div className="min-h-screen relative overflow-hidden bg-slate-50 dark:bg-slate-900">
+        {/* Enterprise Grid Pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         
-        {/* Enhanced Dynamic Elements */}
-        <AnimatedBackground />
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700"></div>
 
         {/* Main Content */}
         <LandingPageContent onLogin={handleLogin} />
